@@ -1,17 +1,17 @@
 package com.mycompany.app;
 
-public class Unidad{
+public class Unidad implements Recibirdisparo, Disparo {
     private int vida;
     public void setVida(int vida){
         this.vida = vida;
     }
     public int getVida(){
-        return this.vida;
+        return vida;
     }
 
     //Accion de Recibir Disparo
-    public void Recibirdisparo (int daño){
-        this.vida = this.vida - daño;
+    public void recibirDisparo (int Danio){
+        this.vida = this.vida - Danio;
     }
 
     //Para verificar que eeste vivo
@@ -21,6 +21,6 @@ public class Unidad{
 
     //Accion de disparar
     public void Disparar(Recibirdisparo objetivo){
-        objetivo.Recibirdisparo(daño_base);
+        objetivo.recibirDisparo(Disparo.Danio);
     }
 }

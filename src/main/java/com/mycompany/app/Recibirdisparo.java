@@ -1,6 +1,6 @@
 package com.mycompany.app;
 
 public interface Recibirdisparo {
-    void recibirDisparo(Disparo disparo);
+    void recibirDisparo(int Danio);
     boolean estaVivo();
 }
