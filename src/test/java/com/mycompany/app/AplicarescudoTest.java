@@ -5,20 +5,14 @@ import org.junit.Test;
 public class AplicarescudoTest {
     @Test
     public void testAplicarEscudo() {
+        Soldado soldado = new Soldado();
+        Tanque tanque = new Tanque();
         Escudo escudo = new Escudo();
-        Unidad soldado = new Soldado();
-
-
-        // Activar el escudo
-        escudo.Activar();
-        assert escudo.Activo() : "El escudo debería estar activo después de activarlo.";
-
-        // Aplicar el escudo al soldado
-        int vidaInicialSoldado = soldado.getVida();
-        escudo.aplicarEscudo(soldado);
-        assert soldado.getVida() == vidaInicialSoldado + 100 : "El soldado debería haber recibido 100 puntos de vida.";
-        assert !escudo.Activo() : "El escudo debería estar inactivo después de aplicarlo.";
-
-    
+        soldado.setEscudo(escudo);
+        tanque.Disparar(soldado);
+        assert(soldado.getVida() == 100);
+        tanque.Disparar(soldado);
+        assert(soldado.getVida() == 0);
+        
     }
 }
