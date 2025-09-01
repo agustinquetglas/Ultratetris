@@ -4,3 +4,4 @@ public interface Recibirdisparo {
     void recibirDisparo(int Danio);
     boolean estaVivo();
 }
+
