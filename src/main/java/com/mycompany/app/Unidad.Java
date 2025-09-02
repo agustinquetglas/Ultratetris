@@ -19,13 +19,13 @@ public abstract class Peloton implements Recibirdisparo, Disparo {
         return escudo;
     }
 
-    //Accion de Recibir Disparo
-    public void recibirDisparo(int Danio){
-        if (escudo != null && escudo.Activo()) {
-            escudo.aplicarEscudo(this);
-        } else {
-            this.vida -= Danio;
-        }
+    //Para Aplicar el escudo y bloquear el disparo
+    public void recibirDisparo(int Danio) {
+        int danioFinal = (escudo != null) 
+        ? escudo.aplicarEscudo(this, Danio) 
+        : Danio;
+        
+        this.vida = Math.max(0, this.vida - danioFinal);
     }
 
     //Para verificar que eeste vivo
