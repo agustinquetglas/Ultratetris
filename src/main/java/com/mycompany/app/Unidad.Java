@@ -1,6 +1,6 @@
 package com.mycompany.app;
 
-public abstract class Unidad implements Recibirdisparo, Disparo {
+public abstract class Peloton implements Recibirdisparo, Disparo {
     private int vida;
     private Escudo escudo;
     public void setVida(int vida){

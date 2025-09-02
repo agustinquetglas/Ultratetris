@@ -10,9 +10,9 @@ public class Escudo {
         
     }
 
-    public void aplicarEscudo(Unidad unidad) {
+    public void aplicarEscudo(Peloton Peloton) {
         if (consumible) {
-            unidad.setVida(unidad.getVida() + 100);
+            Peloton.setVida(Peloton.getVida() + 100);
             consumible = false;
         }
     }

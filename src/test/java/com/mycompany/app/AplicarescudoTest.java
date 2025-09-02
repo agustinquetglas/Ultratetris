@@ -6,7 +6,7 @@ public class AplicarescudoTest {
     @Test
     public void testAplicarEscudo() {
         Escudo escudo = new Escudo();
-        Unidad soldado = new Soldado();
+        Peloton soldado = new Soldado();
 
 
         // Activar el escudo
