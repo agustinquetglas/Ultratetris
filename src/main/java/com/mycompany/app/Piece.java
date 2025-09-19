@@ -2,6 +2,8 @@ package com.mycompany.app;
 
 public abstract class Piece {
     protected int[][][] formas;
+    protected int x = 3;   // posición horizontal inicial
+    protected int y = 0;   // posición vertical inicial
 
     public int[][] getForma() {
         return formas[0]; // devuelve la orientación 0
@@ -39,4 +41,17 @@ public abstract class Piece {
         }
         return sb.toString();
     }
+
+    // Métodos para posición
+    public int getX() { return x; }
+    public int getY() { return y; }
+
+    public void setX(int x) { this.x = x; }
+    public void setY(int y) { this.y = y; }
+
+    // Método que baja la pieza una fila
+    public void bajarUnaFila() {
+        y++;
+    }
+
 }

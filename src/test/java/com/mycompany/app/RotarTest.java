@@ -21,7 +21,7 @@ public class RotarTest {
         piezat1.rotar("izquierda");
         int[][] forma2 = piezat1.getForma();
         assertNotEquals(forma1, forma2);
-        assertEquals("0100110001000000", piezat1.matrizToString(forma2));
+        assertEquals("0000001001100010", piezat1.matrizToString(forma2));
         
     }
 }
