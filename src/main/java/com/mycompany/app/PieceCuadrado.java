@@ -29,6 +29,6 @@ public class PieceCuadrado extends Piece {
             {0,1,1,0},
             {0,0,0,0}
         };
-        // Las orientaciones mantienen la misma forma
+      
     }
 }

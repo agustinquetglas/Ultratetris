@@ -13,9 +13,9 @@ public class CaidalibreTest {
         // Simulación de 60 ticks
         for (int i = 0; i < 60; i++) {
             // Piezas bajan si pueden
-            if (board.puedeBajar(pc)) clock.tick(pc);
+            if (board.puedeBajar(pc)) clock.tick(pc,board);
 
-            if (board.puedeBajar(pl)) clock.tick(pl);
+            if (board.puedeBajar(pl)) clock.tick(pl , board);
         }
         // Verificamos que ambas piezas estén dentro del tablero
         assertTrue(pc.getY() + 2 <= 28); // cuadrado tiene altura 2
@@ -26,4 +26,12 @@ public class CaidalibreTest {
         assertFalse(board.puedeBajar(pl));
 
     }
+
+
+
+   
+
+
+
+
 }

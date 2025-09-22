@@ -8,7 +8,7 @@ public class Board {
         board= new int[largo][ancho];
     }
 
-    // Verifica si la pieza puede bajar
+    
     public boolean puedeBajar(Piece piece) {
         int[][] forma = piece.getForma();
         int x = piece.getX();
@@ -20,11 +20,33 @@ public class Board {
                     int fila = y + i + 1;
                     int col = x + j;
 
-                    if (fila >= largo) return false;         // lim inferior
-                    if (board[fila][col] != 0) return false;  // choca contra el lim o una pieza
+                    if (fila >= largo) return false;         
+                    if (board[fila][col] != 0) return false;  
                 }
             }
         }
         return true;
     }
+
+
+
+    public void fijarPieza(Piece piece){
+        int [][] forma = piece.getForma();
+        int x = piece.getX();
+        int y = piece.getY();
+
+        for (int i = 0;i<4;i++ ){
+            for(int j = 0;j<4;j++ ){
+                if(forma[i][j]!=0){
+                    int fila = y+i;
+                    int col = x+j;
+                    board[fila][col]=forma[i][j];
+                }
+            }
+        }
+
+    }
+
 }
+
+
