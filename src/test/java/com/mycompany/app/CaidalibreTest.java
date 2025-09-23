@@ -28,8 +28,30 @@ public class CaidalibreTest {
     }
 
 
+    @Test
+    public void ColicionEntreDosObjetosTest(){
+        Board board = new Board();
+        PieceCuadrado pc = new PieceCuadrado();
+        PieceCuadrado pc2 = new PieceCuadrado();
+        pc.setX(3);
+        pc.setY(0);
+        while (board.puedeBajar(pc)) {
+            pc.bajarUnaFila();
+        }
+        board.fijarPieza(pc);
+        int ypc=pc.getY();
 
-   
+        pc2.setX(3);
+        pc2.setY(0);
+        while(board.puedeBajar(pc2)){
+            pc2.bajarUnaFila();
+        }
+        int ypc2=pc2.getY();
+
+        assertEquals(ypc-2, ypc2);
+        assertFalse(board.puedeBajar(pc2));
+    }
+    
 
 
 
