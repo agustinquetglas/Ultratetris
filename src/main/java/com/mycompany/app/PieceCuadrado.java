@@ -7,8 +7,8 @@ public class PieceCuadrado extends Piece {
 
         formas[0] = new int[][] {
             {0,0,0,0},
-            {0,1,1,0},
-            {0,1,1,0},
+            {1,1,0,0},
+            {1,1,0,0},
             {0,0,0,0}
         };
         formas[1] = new int[][] {
