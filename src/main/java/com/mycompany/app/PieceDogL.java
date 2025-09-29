@@ -1,6 +1,6 @@
 package com.mycompany.app;
 
-public class PieceDogL extends Piece {
+public class PieceDogL extends PieceBase {
      public PieceDogL() {
         super();
         formas = new int[4][4][4];

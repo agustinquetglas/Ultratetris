@@ -1,6 +1,6 @@
 package com.mycompany.app;
 
-public abstract class Piece {
+public abstract class PieceBase {
     protected int[][][] formas;
     protected int x = 3;   
     protected int y = 0;   

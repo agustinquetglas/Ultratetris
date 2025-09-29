@@ -15,7 +15,7 @@ public class Board {
     return board;
 }
 
-    public boolean puedeBajar(Piece piece) {
+    public boolean puedeBajar(PieceBase piece) {
         int[][] forma = piece.getForma();
         int x = piece.getX();
         int y = piece.getY();
@@ -34,7 +34,7 @@ public class Board {
         return true;
     }
 
-    public void fijarPieza(Piece piece) {
+    public void fijarPieza(PieceBase piece) {
         int [][] forma = piece.getForma();
         int x = piece.getX();
         int y = piece.getY();

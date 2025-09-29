@@ -1,5 +1,5 @@
 package com.mycompany.app;
-public class PieceL extends Piece {
+public class PieceL extends PieceBase {
 
     public PieceL() {
         super();

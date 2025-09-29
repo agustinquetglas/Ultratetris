@@ -2,7 +2,7 @@ package com.mycompany.app;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class RotarTest {
+public class RotatorTest {
 
     @Test
     public void rotarPiezaderecha() {
@@ -63,14 +63,14 @@ public class RotarTest {
 
     @Test
     public void rotarPaloDerecha() {
-        PiecePalo pd = new PiecePalo();
+        PieceStick pd = new PieceStick();
         pd.rotar("derecha");
         assertEquals("1111000000000000", pd.matrizToString(pd.getForma()));
     }
 
     @Test
     public void rotarPaloIzquierda() {
-        PiecePalo pi = new PiecePalo();
+        PieceStick pi = new PieceStick();
         pi.rotar("izquierda");
         assertEquals("0000000000001111", pi.matrizToString(pi.getForma()));
     }

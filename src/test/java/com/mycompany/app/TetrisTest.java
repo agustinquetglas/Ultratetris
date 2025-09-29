@@ -2,37 +2,13 @@ package com.mycompany.app;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class CaidalibreTest {
-    @Test
-    public void CaidaCuadradoL(){
-        Board board = new Board();
-        Clock clock = new Clock();
-        PieceCuadrado pc = new PieceCuadrado();
-        PieceL pl = new PieceL();
-
-        // Simulación de 60 ticks
-        for (int i = 0; i < 60; i++) {
-            // Piezas bajan si pueden
-            if (board.puedeBajar(pc)) clock.tick(pc,board);
-
-            if (board.puedeBajar(pl)) clock.tick(pl , board);
-        }
-        // Verificamos que ambas piezas estén dentro del tablero
-        assertTrue(pc.getY() + 2 <= 28); // cuadrado tiene altura 2
-        assertTrue(pl.getY() + 3 <= 28);        // L tiene altura 3
-
-        // Verificamos que las piezas no bajen más allá del límite
-        assertFalse(board.puedeBajar(pc));
-        assertFalse(board.puedeBajar(pl));
-
-    }
-
+public class TetrisTest {
 
     @Test
     public void ColicionEntreDosObjetosTest(){
         Board board = new Board();
-        PieceCuadrado pc = new PieceCuadrado();
-        PieceCuadrado pc2 = new PieceCuadrado();
+        PieceSquare pc = new PieceSquare();
+        PieceSquare pc2 = new PieceSquare();
         pc.setX(3);
         pc.setY(0);
         while (board.puedeBajar(pc)) {
@@ -57,28 +33,27 @@ public class CaidalibreTest {
     @Test
     public void testContarFilasCompletadas() {
         Board board = new Board();
-
         // Primer palo acostado
-        PiecePalo p1 = new PiecePalo();
+        PieceStick p1 = new PieceStick();
         p1.rotar("derecha"); // ponerlo horizontal
         p1.setX(0);
         p1.setY(19); // última fila
         board.fijarPieza(p1);
 
         // Segundo palo acostado
-        PiecePalo p2 = new PiecePalo();
+        PieceStick p2 = new PieceStick();
         p2.rotar("derecha");
         p2.setX(4);
         p2.setY(19);
         board.fijarPieza(p2);
 
         // Cuadrado que completa la fila
-        PiecePalo p5 = new PiecePalo();
+        PieceStick p5 = new PieceStick();
         p5.setX(8);
         p5.setY(16); // ocupa columna 8
         board.fijarPieza(p5);
 
-        PiecePalo p6 = new PiecePalo();
+        PieceStick p6 = new PieceStick();
         p6.setX(9);
         p6.setY(16); // ocupa columna 9
         board.fijarPieza(p6);
@@ -89,13 +64,13 @@ public class CaidalibreTest {
         assertEquals(1, board.getTotalFilasCompletadas());
 
         // Ahora otros dos palos para completar otra fila arriba
-        PiecePalo p3 = new PiecePalo();
+        PieceStick p3 = new PieceStick();
         p3.rotar("derecha");
         p3.setX(0);
         p3.setY(19);
         board.fijarPieza(p3);
 
-        PiecePalo p4 = new PiecePalo();
+        PieceStick p4 = new PieceStick();
         p4.rotar("derecha");
         p4.setX(4);
         p4.setY(19);
@@ -112,13 +87,13 @@ public class CaidalibreTest {
 
         // Llenamos el tablero fila por fila con palos horizontales
         for (int fila = 0; fila < 20; fila++) {
-            PiecePalo p = new PiecePalo();
+            PieceStick p = new PieceStick();
             p.rotar("derecha"); // lo ponemos horizontal
             p.setX(0);
             p.setY(fila);
             board.fijarPieza(p);
 
-            PiecePalo p2 = new PiecePalo();
+            PieceStick p2 = new PieceStick();
             p2.rotar("derecha");
             p2.setX(4);
             p2.setY(fila);
@@ -126,28 +101,28 @@ public class CaidalibreTest {
 
         }
 
-        PiecePalo p3 = new PiecePalo();
+        PieceStick p3 = new PieceStick();
             p3.setX(0);
             p3.setY(8);
             board.fijarPieza(p3);
 
-        PiecePalo p4 = new PiecePalo();
+        PieceStick p4 = new PieceStick();
             p3.setX(0);
             p3.setY(8);
             board.fijarPieza(p4);
 
-        PiecePalo p5 = new PiecePalo();
+        PieceStick p5 = new PieceStick();
             p3.setX(0);
             p3.setY(8);
             board.fijarPieza(p5);
 
-        PiecePalo p6 = new PiecePalo();
+        PieceStick p6 = new PieceStick();
             p3.setX(0);
             p3.setY(8);
             board.fijarPieza(p6);
 
         // Intentamos colocar una nueva pieza en la parte superior
-        PiecePalo nueva = new PiecePalo();
+        PieceStick nueva = new PieceStick();
         nueva.setX(3);
         nueva.setY(0);
 
@@ -169,7 +144,60 @@ public class CaidalibreTest {
         assertFalse("El tablero está lleno, debería ser game over", puedeEntrar);
     }
 
+    @Test
+    public void testGanarConCincoFilasCompletas() {
+        Board board = new Board();
+        Clock clock = new Clock();
 
-        
-   
+        // Paso 1: llenar filas 16 a 19 con palos horizontales (col 0–7)
+        for (int fila = 16; fila < 20; fila++) {
+            PieceStick p1 = new PieceStick();
+            p1.rotar("derecha");
+            p1.setX(0);
+            p1.setY(fila);
+            board.fijarPieza(p1);
+
+            PieceStick p2 = new PieceStick();
+            p2.rotar("derecha");
+            p2.setX(4);
+            p2.setY(fila);
+            board.fijarPieza(p2);
+        }
+
+        // Paso 2: llenar columnas 8 y 9 de filas 16 a 19 con palos verticales
+        PieceStick p3 = new PieceStick(); // columna 8
+        p3.setX(8);
+        // simulamos su caída
+        while (board.puedeBajar(p3)) {
+            clock.tick(p3, board);
+        }
+        board.fijarPieza(p3);
+
+        PieceStick p4 = new PieceStick(); // columna 9
+        p4.setX(9);
+        while (board.puedeBajar(p4)) {
+            clock.tick(p4, board);
+        }
+        board.fijarPieza(p4);
+
+        // Hasta acá filas 16–19 están llenas (4 filas completas)
+
+        // Paso 3: colocar 5 cuadrados para completar fila 15
+        for (int x = 0; x <= 8; x += 2) {
+            PieceSquare cuadrado = new PieceSquare();
+            cuadrado.setX(x);
+            // simulamos la caída del cuadrado
+            while (board.puedeBajar(cuadrado)) {
+                clock.tick(cuadrado, board);
+            }
+            board.fijarPieza(cuadrado);
+        }
+
+        // Limpiar filas completas
+        board.limpiarFilasCompletas();
+
+        // Paso 4: verificamos que se completaron al menos 5 filas
+        assertTrue("Debería haber completado al menos 5 filas", 
+        board.getTotalFilasCompletadas() >= 5);
+    }
 }

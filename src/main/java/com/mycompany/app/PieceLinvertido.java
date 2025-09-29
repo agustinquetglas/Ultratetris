@@ -1,6 +1,6 @@
 package com.mycompany.app;
 
-public class PieceLinvertido extends Piece {
+public class PieceLinvertido extends PieceBase {
         public PieceLinvertido() {
         super();
         formas = new int[4][4][4];

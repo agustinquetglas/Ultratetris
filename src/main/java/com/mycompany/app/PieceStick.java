@@ -1,7 +1,7 @@
 package com.mycompany.app;
 
-public class PiecePalo extends Piece {
-    public PiecePalo() {
+public class PieceStick extends PieceBase {
+    public PieceStick() {
         super();
         formas = new int[4][4][4];
 

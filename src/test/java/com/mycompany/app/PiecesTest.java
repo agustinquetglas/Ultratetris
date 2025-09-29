@@ -7,7 +7,7 @@ public class PiecesTest {
    
     @Test
     public void testCuadradoInicial() {
-        PieceCuadrado cuadrado = new PieceCuadrado();
+        PieceSquare cuadrado = new PieceSquare();
         assertEquals("0000110011000000", cuadrado.matrizToString(cuadrado.getForma()));
     }
 
@@ -40,7 +40,7 @@ public class PiecesTest {
 
     @Test
     public void testPaloInicial() {
-        PiecePalo palo = new PiecePalo();
+        PieceStick palo = new PieceStick();
         assertEquals("1000100010001000", palo.matrizToString(palo.getForma()));
     }
 
