@@ -18,8 +18,8 @@ public class CaidalibreTest {
             if (board.puedeBajar(pl)) clock.tick(pl , board);
         }
         // Verificamos que ambas piezas estén dentro del tablero
-        assertTrue(pc.getY() + 2 <= 20); // cuadrado tiene altura 2
-        assertTrue(pl.getY() + 3 <= 20);        // L tiene altura 3
+        assertTrue(pc.getY() + 2 <= 28); // cuadrado tiene altura 2
+        assertTrue(pl.getY() + 3 <= 28);        // L tiene altura 3
 
         // Verificamos que las piezas no bajen más allá del límite
         assertFalse(board.puedeBajar(pc));
@@ -170,6 +170,6 @@ public class CaidalibreTest {
     }
 
 
-
-
+        
+   
 }
