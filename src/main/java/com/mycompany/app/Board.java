@@ -76,4 +76,27 @@ public class Board {
     public int getTotalFilasCompletadas() {
         return totalFilasCompletadas;
     }
+
+
+
+
+    public boolean puedeColocar(PieceBase pieza) {
+    int[][] forma = pieza.getForma();
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            if (forma[i][j] != 0) {
+                int fila = pieza.getY() + i;
+                int col = pieza.getX() + j;
+                if (fila < 0 || fila >= board.length || col < 0 || col >= board[0].length) {
+                    return false; // fuera de límites
+                }
+                if (board[fila][col] != 0) {
+                    return false; // ya ocupado
+                }
+            }
+        }
+    }
+    return true;
+    }
+
 }

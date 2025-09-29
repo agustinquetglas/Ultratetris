@@ -83,66 +83,33 @@ public class TetrisTest {
     
     @Test
     public void testGameOver() {
-        Board board = new Board();
+    Board board = new Board();
 
-        // Llenamos el tablero fila por fila con palos horizontales
-        for (int fila = 0; fila < 20; fila++) {
-            PieceStick p = new PieceStick();
-            p.rotar("derecha"); // lo ponemos horizontal
-            p.setX(0);
-            p.setY(fila);
-            board.fijarPieza(p);
+    // Llenamos el tablero fila por fila con palos horizontales
+    for (int fila = 0; fila < 20; fila++) {
+        PieceStick p1 = new PieceStick();
+        p1.rotar("derecha");
+        p1.setX(0);
+        p1.setY(fila);
+        board.fijarPieza(p1);
 
-            PieceStick p2 = new PieceStick();
-            p2.rotar("derecha");
-            p2.setX(4);
-            p2.setY(fila);
-            board.fijarPieza(p2);
-
-        }
-
-        PieceStick p3 = new PieceStick();
-            p3.setX(0);
-            p3.setY(8);
-            board.fijarPieza(p3);
-
-        PieceStick p4 = new PieceStick();
-            p3.setX(0);
-            p3.setY(8);
-            board.fijarPieza(p4);
-
-        PieceStick p5 = new PieceStick();
-            p3.setX(0);
-            p3.setY(8);
-            board.fijarPieza(p5);
-
-        PieceStick p6 = new PieceStick();
-            p3.setX(0);
-            p3.setY(8);
-            board.fijarPieza(p6);
-
-        // Intentamos colocar una nueva pieza en la parte superior
-        PieceStick nueva = new PieceStick();
-        nueva.setX(3);
-        nueva.setY(0);
-
-        // Verificamos que no se puede fijar porque está lleno
-        boolean puedeEntrar = true;
-        int[][] forma = nueva.getForma();
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
-                if (forma[i][j] != 0) {
-                    int fila = nueva.getY() + i;
-                    int col = nueva.getX() + j;
-                    if (board.getBoard()[fila][col] != 0) {
-                        puedeEntrar = false;
-                    }
-                }
-            }
-        }
-
-        assertFalse("El tablero está lleno, debería ser game over", puedeEntrar);
+        PieceStick p2 = new PieceStick();
+        p2.rotar("derecha");
+        p2.setX(4);
+        p2.setY(fila);
+        board.fijarPieza(p2);
     }
+
+    // Intentamos colocar una nueva pieza en la parte superior
+    PieceStick nueva = new PieceStick();
+    nueva.setX(3);
+    nueva.setY(0);
+
+    // Ahora usamos board.puedeColocar
+    assertFalse("El tablero está lleno, debería ser game over",
+                board.puedeColocar(nueva));
+    }
+
 
     @Test
     public void testGanarConCincoFilasCompletas() {
