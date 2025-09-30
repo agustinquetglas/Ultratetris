@@ -31,31 +31,46 @@ public class TetrisTest {
     
 
     @Test
+
     public void testContarFilasCompletadas() {
         Board board = new Board();
+        Clock clock = new Clock();
+
         // Primer palo acostado
         PieceStick p1 = new PieceStick();
-        p1.rotar("derecha"); // ponerlo horizontal
+        p1.rotar("derecha");
         p1.setX(0);
-        p1.setY(19); // última fila
+        p1.setY(0); // empieza arriba
+        while (board.puedeBajar(p1)) {
+            clock.tick(p1, board);
+        }
         board.fijarPieza(p1);
 
         // Segundo palo acostado
         PieceStick p2 = new PieceStick();
         p2.rotar("derecha");
         p2.setX(4);
-        p2.setY(19);
+        p2.setY(0);
+        while (board.puedeBajar(p2)) {
+            clock.tick(p2, board);
+        }
         board.fijarPieza(p2);
 
         // Cuadrado que completa la fila
         PieceStick p5 = new PieceStick();
         p5.setX(8);
-        p5.setY(16); // ocupa columna 8
+        p5.setY(0);
+        while (board.puedeBajar(p5)) {
+            clock.tick(p5, board);
+        }
         board.fijarPieza(p5);
 
         PieceStick p6 = new PieceStick();
         p6.setX(9);
-        p6.setY(16); // ocupa columna 9
+        p6.setY(0);
+        while (board.puedeBajar(p6)) {
+            clock.tick(p6, board);
+        }
         board.fijarPieza(p6);
 
         // Limpiar y verificar
@@ -67,13 +82,19 @@ public class TetrisTest {
         PieceStick p3 = new PieceStick();
         p3.rotar("derecha");
         p3.setX(0);
-        p3.setY(19);
+        p3.setY(0);
+        while (board.puedeBajar(p3)) {
+            clock.tick(p3, board);
+        }
         board.fijarPieza(p3);
 
         PieceStick p4 = new PieceStick();
         p4.rotar("derecha");
         p4.setX(4);
-        p4.setY(19);
+        p4.setY(0);
+        while (board.puedeBajar(p4)) {
+            clock.tick(p4, board);
+        }
         board.fijarPieza(p4);
 
         int filas2 = board.limpiarFilasCompletas();
@@ -81,6 +102,32 @@ public class TetrisTest {
         assertEquals(2, board.getTotalFilasCompletadas());
     }
     
+
+    @Test
+    public void  testGameOver2() {
+        Board board = new Board();
+        Clock clock = new Clock();
+
+    // Llenamos el tablero fila por fila con palos horizontales
+    for (int i = 0; i < 19; i++) {
+        PieceStick p1 = new PieceStick();
+        p1.rotar("derecha");
+        while (board.puedeBajar(p1)) {
+            clock.tick(p1, board);
+        }
+        board.fijarPieza(p1);
+    }
+
+    // Intentamos colocar una nueva pieza en la parte superior
+    PieceStick nueva = new PieceStick();
+
+    // Ahora usamos board.puedeColocar
+    assertFalse("El tablero está lleno, debería ser game over",
+                board.puedeColocar(nueva));
+    }
+    
+
+
     @Test
     public void testGameOver() {
     Board board = new Board();
